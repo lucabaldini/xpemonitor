@@ -1,0 +1,11 @@
+XPOL monitor v.1.0     (March 2008)
+=======================================
+1
+display 2Draw events every 100 events
+=======================================
+PixelThr: threshold on pixels for cluster reconstruction
+Rmin: small radius for impact point recon (def:1.5)
+Rmax: large radius for impact point recon (def:3.5)
+Weight: pixel weight for impact point recon (def:0.05)
+HghClu only: 1 = one cluster  - 0 = all clusters in histos
+

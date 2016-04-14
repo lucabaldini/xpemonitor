@@ -1,0 +1,22 @@
+
+The program uses extensively the ROOT data analysis framework.
+It has been tested with the latest version of ROOT, respectively:
+	- Intel x86 Linux for Redhat RHEL 4 (SLC4) and gcc 3.4, version 5.18/00 
+	- WindowsXP/NT/w2000 with VC++ 7.1, version 5.18/00  
+
+WINDOWS:
+The program has been compiled and tested  with VC++7.1 under Windows XP  and Windows 2000.
+It is necessary to set the environmental variable MVSSDK to the Microsoft Visual Studio .NET
+installation directory. 
+In the VC prompt use the command "make -f MakefileWin" to compile. It generates the executable Monitor.exe.
+Type in the command line Monitor.exe to run the program or double click on it in the NEWMON directory.
+
+LINUX:
+The program has been compiled and tested with gcc3.4.6 under Scientific Linux 4
+Use the command "make -f MakefileLinux" to compile.
+
+=======================================================================================
+ You can add/display info, notes or comments in the file info.dat clicking on the info button.
+ It is also possible to chenge the frequency of the cumulative 2d raw event display changing the number
+ (third line) in the info file.
+

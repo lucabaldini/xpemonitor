@@ -1,0 +1,47 @@
+
+#ROOTCFLAGS    = $(shell root-config --cflags) -pthread -m64 -I/afs/slac/g/glast/ground/GLAST_EXT/redhat6-x86_64-64bit-gcc44//ROOT/v5.34.03-gr01/include
+#ROOTLIBS      = $(shell root-config --libs) -L/afs/slac/g/glast/ground/GLAST_EXT/redhat6-x86_64-64bit-gcc44//ROOT/v5.34.03-gr01/lib -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -pthread -lm -ldl -rdynamic
+#ROOTGLIBS     = $(shell root-config --glibs) -L/afs/slac/g/glast/ground/GLAST_EXT/redhat6-x86_64-64bit-gcc44//ROOT/v5.34.03-gr01/lib -lGui -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -pthread -lm -ldl -rdynamic
+
+# Linux with egcs
+CXX           = g++
+CXXFLAGS      = -O1 -Wall -Wno-deprecated
+LD            = g++
+LDFLAGS       = -g
+SOFLAGS       = -shared
+
+
+#CXXFLAGS     += $(ROOTCFLAGS)
+#LIBS          = $(ROOTLIBS)
+#GLIBS         = $(ROOTGLIBS)
+
+# set by hand CS
+CXXFLAGS     += -I 'C:\root_v5.34.34\include'
+LIBS          = -L 'C:\root_v5.34.34\lib' -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -pthread -lm -ldl -rdynamic
+GLIBS         = -L 'C:\root_v5.34.34\lib' -lGui -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -pthread -lm -ldl -rdynamic
+#------------------------------------------------------------------------------
+
+OBJS =  xPolMon.o pMainGui.o pUdpSocket.o TDetector.o TCluster.o TEditor.o MonitorDict.o
+CINT_HDRS = pMainGui.h TDetector.h TCluster.h TEditor.h
+
+PROGRAMS = Monitor
+
+Monitor:	$(OBJS)
+		$(LD) $(LDFLAGS) $(OBJS) $(GLIBS) -o Monitor.exe
+		@echo "$@ done"
+
+clean:
+	@rm -f $(OBJS) *Dict.* *.exe *.lib *.exp
+
+.SUFFIXES: .cxx
+
+.cxx.o:
+	$(CXX) $(CXXFLAGS) -c $<
+
+
+pMainGui.o:pMainGui.h
+MonitorDict.cxx: pMainGui.h LinkDef.h
+		@echo "Generating dictionary Dict..."
+		rootcint -f $@ -c $^
+
+

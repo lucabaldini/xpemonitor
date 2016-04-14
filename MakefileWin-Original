@@ -1,0 +1,42 @@
+include Makefile.arch
+#------------------------------------------------------------------------------
+
+OBJS = pMainGui.$(ObjSuf) xPolMon.$(ObjSuf) TDetector.$(ObjSuf) TCluster.$(ObjSuf) MyUdpSocket.$(ObjSuf) TEditor.$(ObjSuf) MonitorDict.$(ObjSuf)
+
+#INCLUDE = -I 'C:\Programmi\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\Include'
+MONITOR = Monitor$(ExeSuf)
+LIBS = '$(MVSSDK)\Vc7\PlatformSDK\Lib\Ws2_32.Lib'
+#LIBS = 'C:\Programmi\Microsoft Visual Studio .NET 2003\Vc7\PlatformSDK\Lib\Ws2_32.Lib'
+CINT_HDRS = pMainGui.h TDetector.h TCluster.h TEditor.h
+
+#------------------------------------------------------------------------------
+.SUFFIXES: .$(SrcSuf) .$(ObjSuf) .$(DllSuf)
+
+
+$(MONITOR):	$(OBJS)
+		$(LD) $(LDFLAGS) $^ $(GLIBS) $(LIBS)  $(OutPutOpt)$@
+		$(MT_EXE)
+		@echo "$@ done"
+		@echo  $(VC_MAJOR)  "ARCH: " $(ARCH) " PLATFORM: " $(PLATFORM)
+		@echo $(MVSSDK)
+
+clean:
+	@rm -f $(OBJS) *Dict.* *.exe *.lib *.exp 
+
+.SUFFIXES: .$(SrcSuf)
+
+.$(SrcSuf).$(ObjSuf):
+	$(CXX) $(CXXFLAGS) -c $<
+
+
+pMainGui.$(ObjSuf):pMainGui.h
+MonitorDict.$(SrcSuf): pMainGui.h LinkDef.h
+		@echo "Generating dictionary Dict..."
+		rootcint -f $@ -c $^
+
+
+
+
+
+
+

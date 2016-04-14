@@ -1,10 +1,10 @@
 PixelThresh(LM): 10
-SingleEvfreq: 1
+SingleEvfreq: 20
 ServerPort: 50001
-TimeOut: 10000
-PixelThresh(FM): 10
-Rmin: 1.5
-Rmax: 3.5
-Weight: 0.05
-HighClu: 1
-Displyfreq: 500
+TimeOut: 5000
+PixelThresh(FM): Rmin:
+Rmin: Weight:
+Rmax: Displyfreq:
+Weight: HighClu:
+HighClu: Displyfreq:
+Displyfreq: 

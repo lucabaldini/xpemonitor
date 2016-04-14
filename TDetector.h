@@ -2,6 +2,7 @@
 #define TDETECTOR_HH
 
 #include "TCluster.h"
+using namespace std;
 
 class TDetector {
 
@@ -10,9 +11,7 @@ class TDetector {
  
   MatrixUshort fPixMask;
   MatrixUshort fBorderPixel;
-  MatrixFloat fNoiseMatrix;
-
-  int fSaturatedChans;
+ 
   float WeightLengthScale;
   float SmallCircleRadius;
   float WideCircleRadius;

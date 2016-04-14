@@ -4,6 +4,7 @@
 #include "xPolMon.h"
 #include "TDetector.h"
 #include "TEditor.h"
+using namespace std;
 
 class pMainGui : public TGMainFrame {
  private:

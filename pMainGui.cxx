@@ -158,7 +158,7 @@ pMainGui::pMainGui(const TGWindow *parent, UInt_t width, UInt_t height)
   // make FullMon tab yellow 
   Pixel_t yellow;
   fClient->GetColorByName("yellow", yellow);
-  TGTabElement *tabel = fTab->GetTabTab("FullRec Monitor");;
+  TGTabElement *tabel = fTab->GetTabTab("ReconData Monitor");;
   tabel->ChangeBackground(yellow);
   
   AddFrame(m_canvasFrame, new TGLayoutHints(kLHintsCenterX| kLHintsExpandX | kLHintsExpandY, 2, 2, 2, 0));
